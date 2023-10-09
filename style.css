@@ -1,0 +1,225 @@
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; /*allows us to include the padding and border in an element's total width and height*/
+    font-family: 'Poppins', sans-serif;
+}
+
+/*Style for the body element*/
+body {
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: #23242a;
+
+}
+
+/*Style for all elements with class 'box'*/
+.box {
+    position: relative; /*Setting the top, right, bottom, and left properties of a relatively-positioned element will cause it to be adjusted away from its normal position*/
+    width: 380px;
+    height: 420px;
+    background: #1c1c1c;
+    overflow: hidden;
+    border-radius: 8px;
+
+}
+
+/*The ::before selector inserts something before the content of each selected element(s) in this case a background*/
+/*Add a light blue colour spinning round the box element*/
+.box::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 380px;
+    height: 420px;
+    background: linear-gradient(0deg, transparent, transparent, #45f3ff, #45f3ff, #45f3ff);
+    z-index: 1;
+    transform-origin: bottom right;
+    animation: animate 6s linear infinite;
+}
+
+/*Add a second light blue colour spinning round the box element*/
+.box::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 380px;
+    height: 420px;
+    background: linear-gradient(0deg, transparent, transparent, #45f3ff, #45f3ff, #45f3ff);
+    z-index: 1;
+    transform-origin: bottom right;
+    animation: animate 6s linear infinite;
+    animation-delay: -3s;
+}
+
+.borderLine {
+    position: absolute;
+    top: 0;
+    inset: 0;
+}
+
+/*Add a red colour spinning round the box element*/
+.borderLine::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 380px;
+    height: 420px;
+    background: linear-gradient(0deg, transparent, transparent, #ff2770, #ff2770, #ff2770);
+    z-index: 1;
+    transform-origin: bottom right;
+    animation: animate 6s linear infinite;
+    animation-delay: -1.5s;   
+}
+
+/*Add a second red colour spinning round the box element*/
+.borderLine::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 380px;
+    height: 420px;
+    background: linear-gradient(0deg, transparent, transparent, #ff2770, #ff2770, #ff2770);
+    z-index: 1;
+    transform-origin: bottom right;
+    animation: animate 6s linear infinite;
+    animation-delay: -4.5s; 
+}
+
+/*keyframe rule specifies the animation code*/
+@keyframes animate {
+    0%{
+        transform: rotate(0deg);
+    }
+    100%{
+        transform: rotate(360deg);
+    }
+    
+}
+
+/*Style for items in form element and those items within the class 'box'*/
+.box form {
+    position: absolute; /*positioned relative to the nearest positioned ancestor (instead of positioned relative to the viewport, like fixed).*/
+    inset: 4px; /*sets the distance between an element and the parent element*/
+    background: #222;
+    padding: 50px 40px; /*creates space around an element's content, inside of any defined borders*/
+    border-radius: 8px;
+    z-index: 2; /*specifies the stack order of an element. An element with greater stack order is always in front of an element with a lower stack order.*/
+    display: flex;
+    flex-direction: column;
+}
+
+/*Style the elements form and h2 as well as all items within the class 'box'*/
+.box form h2 {
+    color: #fff;
+    font-weight: 500;
+    text-align: center;
+    letter-spacing: 0.1em;
+}
+
+/*Style the form element as well as items within the classes 'box' and 'inputBox'*/
+.box form .inputBox {
+    position: relative;
+    width: 300px;
+    margin-top: 35px;
+}
+
+/*Style the form and input elements as well as the classes 'box' and 'inputBox'*/
+.box form .inputBox input {
+    position: relative;
+    width: 100%;
+    padding: 20px 10px 10px;
+    background: transparent;
+    outline: none;
+    border: none;
+    box-shadow: none;
+    color: #23242a;
+    font-size: 1em;
+    letter-spacing: 0.05em;
+    z-index: 10;
+}
+
+/*style the elements form and span and the classes 'box' and 'inputBox' */
+.box form .inputBox span {
+    position: absolute;
+    left: 0;
+    padding: 20px 0px 10px;
+    pointer-events: none; /*defines whether or not an element reacts to pointer events*/
+    color: #8f8f8f;
+    font-size: 1em;
+    letter-spacing: 0.05em;
+    transition: 0.5s; /*allows you to change property values smoothly, over a given duration*/
+}
+
+/*Styling the password and Username input sections to make it more responsive when selected*/ 
+.box form .inputBox input:valid ~ span, .box form .inputBox input:focus ~ span {
+    color: #fff;
+    font-size: 0.75em;
+    transform: translateY(-34px);
+}
+
+.box form .inputBox i {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 2px;
+    background: #fff;
+    border-radius: 4px;
+    overflow: hidden; /*The overflow is clipped, and the rest of the content will be invisible*/
+    transition: 0.5s;
+    pointer-events: none;
+}
+
+.box form .inputBox input:valid ~ i, .box form .inputBox input:focus ~ i {
+    height: 44px;
+
+}
+
+.box form .links {
+    display: flex;
+    justify-content: space-between;
+}
+
+/*Styling the links (forgot password & signup) */
+.box form .links a {
+    margin: 10px 0;
+    font-size: 0.75rem;
+    color: #8f8f8f;
+    text-decoration: none;
+}
+
+/*Styling the signup link (nth-child:'2')*/
+.box form .links a:hover, .box form .links a:nth-child(2) {
+    color: #fff;
+}
+
+/*Styling the submit button*/
+.box form input[type="submit"] {
+    border: none;
+    outline: none;
+    padding: 9px 25px;
+    background: #fff;
+    cursor: pointer;
+    font-size: 0.9em;
+    border-radius: 4px;
+    font-weight: 600;
+    width: 100px;
+    margin-top: 10px;
+}
+
+.box form input[type="submit"]:active {
+    opacity: 0.8;
+}
+
+
+
